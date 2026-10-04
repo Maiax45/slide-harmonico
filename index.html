@@ -271,5 +271,48 @@ renderMajor();renderMinor();progress();composer();
   render();
 })();
 </script>
+<script>
+(function(){
+  const curso=document.getElementById('curso');
+  if(!curso) return;
+  const cards=curso.querySelectorAll('.levelcards .level');
+  const trilhas=[
+    {titulo:'📘 Aulas da trilha',itens:[['1️⃣ Campo Maior','maior']]},
+    {titulo:'📗 Aulas da trilha',itens:[['2️⃣ Campo Menor','menor'],['3️⃣ Funções Harmônicas','funcoes']]},
+    {titulo:'📕 Aulas da trilha',itens:[['4️⃣ Dominantes','dominantes'],['5️⃣ Modulação','modulacao']]}
+  ];
+  cards.forEach((card,i)=>{
+    const box=document.createElement('div');
+    box.className='lesson';
+    box.style.marginTop='12px';
+    box.innerHTML='<strong>'+trilhas[i].titulo+'</strong>'+trilhas[i].itens.map(x=>'<button class="btn courseLesson" data-lesson-target="'+x[1]+'">🎓 '+x[0]+'</button>').join('');
+    card.appendChild(box);
+  });
+  curso.querySelectorAll('.courseLesson').forEach(b=>b.onclick=()=>{
+    const navBtn=document.querySelector('#nav button[data-view="aulas"]');
+    if(navBtn) navBtn.click();
+    setTimeout(()=>{
+      const tab=document.querySelector('#academyTabs button[data-lesson="'+b.dataset.lessonTarget+'"]');
+      if(tab) tab.click();
+      document.getElementById('aulas')?.scrollIntoView({behavior:'smooth',block:'start'});
+    },30);
+  });
+})();
+</script>
 </body>
+<script>
+(function(){
+  const curso=document.getElementById('curso'); if(!curso) return;
+  const extra=document.createElement('div'); extra.className='card';
+  extra.innerHTML='<h2>🎓 Conteúdo completo das trilhas</h2><p class="muted">Sequência de aulas com teoria, prática no violão, ouvido, exercícios e aplicação musical.</p><div class="theory">'+
+  '<details open><summary>🥉 INICIANTE — Fundamentos essenciais</summary><p><b>Aula 1 — Notas musicais:</b> Dó, Ré, Mi, Fá, Sol, Lá, Si; sustenidos, bemóis, tom e semitom. <b>Prática:</b> localizar as notas naturais no braço.</p><p><b>Aula 2 — Escala maior:</b> T–T–S–T–T–T–S. <b>Prática:</b> montar C, G, D e F maior.</p><p><b>Aula 3 — Graus:</b> I a VII e funções básicas. <b>Prática:</b> falar o grau antes de tocar.</p><p><b>Aula 4 — Tríades:</b> maior, menor e diminuta; tônica, terça e quinta. <b>Prática:</b> montar I, IV e V.</p><p><b>Aula 5 — Campo Maior:</b> I, ii, iii, IV, V, vi e vii°. <b>Prática:</b> tocar I–V–vi–IV.</p><p><b>Meta:</b> identificar tom, graus e acordes básicos sem depender apenas de memorização.</p></details>'+
+  '<details><summary>🥈 INTERMEDIÁRIO — Harmonia e acompanhamento</summary><p><b>Aula 6 — Campo menor:</b> menor natural, harmônico e melódico; função do VII elevado. <b>Prática:</b> i–iv–VI–V.</p><p><b>Aula 7 — Funções harmônicas:</b> Tônica = repouso; Subdominante = preparação; Dominante = tensão e resolução. <b>Prática:</b> I–IV–V–I.</p><p><b>Aula 8 — Cadências:</b> autêntica, plagal, deceptiva e semicadência. <b>Prática:</b> reconhecer o efeito de cada final.</p><p><b>Aula 9 — Inversões:</b> baixo, terça e quinta; linhas de baixo mais suaves. <b>Prática:</b> tocar a mesma progressão com baixos diferentes.</p><p><b>Aula 10 — Progressões:</b> I–V–vi–IV, ii–V–I, vi–IV–I–V e aplicações Gospel, Pop e Worship.</p><p><b>Meta:</b> acompanhar uma música entendendo por que cada acorde funciona.</p></details>'+
+  '<details><summary>🥇 AVANÇADO — Tensão, cor e criação</summary><p><b>Aula 11 — Dominantes:</b> V7, resolução e dominantes secundárias. <b>Prática:</b> V7–I e V7/ii–ii.</p><p><b>Aula 12 — Empréstimos modais:</b> acordes do modo paralelo, como iv, bVI e bVII. <b>Prática:</b> comparar I–IV–V com I–iv–V.</p><p><b>Aula 13 — Modulação:</b> novo centro tonal, acordes pivô e dominante da nova tonalidade. <b>Prática:</b> C → G e G → A.</p><p><b>Aula 14 — Análise harmônica:</b> descobrir tom, graus, funções, dominantes, empréstimos e modulações.</p><p><b>Aula 15 — Modo Compositor:</b> estilo, clima, tensão e criação de introdução, verso, refrão e ponte.</p><p><b>Meta:</b> analisar, reharmonizar e criar progressões próprias.</p></details>'+
+  '<details><summary>🎸 Método de prática no violão</summary><p>1) toque a escala falando os graus; 2) localize a tônica em três regiões; 3) toque os acordes do campo; 4) faça a progressão com metrônomo; 5) toque sem olhar e explique a função de cada acorde.</p></details>'+
+  '<details><summary>👂 Treino de ouvido</summary><p>Treine repouso, preparação, tensão, maior/menor, resolução V–I e mudança de tonalidade. Tente responder antes de consultar a Régua.</p></details>'+
+  '<details><summary>📝 Avaliação final</summary><p>O aluno deve identificar tonalidade, montar campos maior e menor, explicar funções, encontrar dominantes, localizar acordes no braço, analisar progressões, reconhecer empréstimo modal e modulação e criar uma progressão própria.</p></details>'+
+  '</div>';
+  curso.appendChild(extra);
+})();
+</script>
 </html>
